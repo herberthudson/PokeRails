@@ -1,6 +1,10 @@
 FROM ruby:2.6.3
 
-RUN apt-get update -qq && apt-get install -y nodejs
+RUN apt-get update -q && apt-get install -y curl software-properties-common
+
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
+
+RUN apt-get install nodejs
 
 RUN mkdir /pokeapp
 
