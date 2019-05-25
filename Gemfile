@@ -66,3 +66,9 @@ gem 'bootstrap', '~> 4.0.0'
 
 # jquery
 gem 'jquery-rails'
+
+# Gem figaro for app configuration
+gem 'figaro'
+
+# faraday for cosumming api
+gem 'faraday'
