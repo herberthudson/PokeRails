@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'pokemons/view'
   get 'cities/index'
   get 'cities/view'
   root 'welcome#index'

@@ -72,3 +72,7 @@ gem 'figaro'
 
 # faraday for cosumming api
 gem 'faraday'
+
+# pokeapi
+
+gem 'poke-api-v2'

@@ -1,0 +1,14 @@
+<h1>Pokemons#view</h1>
+<p><%= @temp %></p>
+<p>
+<%
+=begin%>
+ <% @pokemon.pokemon.each do |pok| %>
+    <%= pok.pokemon.name %>
+<% end%> 
+<%
+=end%>
+<%= session[:pokemon].name %>
+
+</p>
+<%= @perfil.name %>
