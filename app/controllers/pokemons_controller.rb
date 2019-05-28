@@ -8,6 +8,7 @@ class PokemonsController < ApplicationController
   private
 
   def get_pokemon
+    session[:pokemon] ||= {}
     list_of_pokemons = PokeApi.get(type: sort_pokemon)
     
     list_of_pokemons.pokemon.shuffle.each do |type|
@@ -20,8 +21,8 @@ class PokemonsController < ApplicationController
   end
 
   def sort_pokemon
-    temp = get_temp
     # current temperature
+    temp = get_temp
     if temp["weather"][0]["main"] == "Rain"
       return "electric"
     else
@@ -72,6 +73,7 @@ class PokemonsController < ApplicationController
     end
     #parsing return
     temp = JSON.parse response.body
+    #temp = response
   end
 
 end
