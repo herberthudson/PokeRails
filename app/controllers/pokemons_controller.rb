@@ -8,16 +8,19 @@ class PokemonsController < ApplicationController
   private
 
   def get_pokemon
-    session[:pokemon] ||= {}
-    list_of_pokemons = PokeApi.get(type: sort_pokemon)
+    begin
+      session[:pokemon] ||= {}
+      list_of_pokemons = PokeApi.get(type: sort_pokemon)
     
-    list_of_pokemons.pokemon.shuffle.each do |type|
-      if type.pokemon.name != session[:pokemon]['name']
-        session[:pokemon] = type.pokemon
-        break
+      list_of_pokemons.pokemon.shuffle.each do |type|
+        if type.pokemon.name != session[:pokemon]['name']
+          session[:pokemon] = type.pokemon
+          break
+        end
       end
+    rescue => exception
+      return false
     end
-
   end
 
   def sort_pokemon
@@ -61,19 +64,24 @@ class PokemonsController < ApplicationController
   end
 
   def get_temp
-    # get city name
-    city = params[:city]
-    # url for weather
-    url = "http://api.openweathermap.org/data/2.5/weather"
-    
-    response = Faraday.get do |req| 
-      req.url url , :q => city
-      req.params['APPID'] = ENV['APPID']
-      req.params['units'] = 'metric'
+    begin
+      # get city name
+      city = params[:city]
+      # url for weather
+      url = "http://api.openweathermap.org/data/2.5/weather"
+      
+      response = Faraday.get do |req| 
+        req.url url , :q => city
+        req.params['APPID'] = ENV['APPID']
+        req.params['units'] = 'metric'
+      end
+      #parsing return
+      temp = JSON.parse response.body
+      #temp = response
+    rescue => exception
+      return false
     end
-    #parsing return
-    temp = JSON.parse response.body
-    #temp = response
+    
   end
 
 end
