@@ -1,2 +1,18 @@
-<h1>Welcome to PokeRails</h1>
-<p>Under construction</p>
+<div class="row">
+    <div class="col-md-12">
+        <div class="jumbotron text-center">
+            <h1 class="display-4">Bem-vindo ao PokeRails!</h1>
+            <p class="lead">Para iniciar, por favor, insira o nome da cidade no campo abaixo.</p>
+            <div class="row justify-content-md-center">
+                <%= form_tag("/pokemons/view", method: "get") do %>
+
+                    <div class="input-group">
+                    <%= text_field_tag(:city, '', class: "form-control", placeholder: "Cidade") %>
+                    <div class="input-group-append">
+                        <%= submit_tag("Go", class: "btn btn-outline-secondary") %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
