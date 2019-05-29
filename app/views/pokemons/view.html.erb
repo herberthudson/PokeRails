@@ -1,14 +1,29 @@
-<h1>Pokemons#view</h1>
-<p><%= @temp %></p>
-<p>
-<%
-=begin%>
- <% @pokemon.pokemon.each do |pok| %>
-    <%= pok.pokemon.name %>
-<% end%> 
-<%
-=end%>
-<%= session[:pokemon].name %>
-
-</p>
-<%= @perfil.name %>
+<div class="row justify-content-md-center">
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-header">
+                Tempo
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    <li class="list-group-item"><%= @temp["weather"][0]["main"] %></li>
+                    <li class="list-group-item"><%= @temp["main"]["temp"] %> C</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 h-100">
+        <div class="card">
+            <div class="card-header">
+                Pokemon
+            </div>
+            <div class="text-center">
+                <%= image_tag @perfil.sprites.front_default, size: "96x96", alt: @perfil.name %>
+            </div>
+            <div class="card-body text-center">
+                <string>
+                <%= @perfil.name %>
+            </div>
+        </div>
+    </div>
+</div>
