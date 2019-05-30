@@ -1,4 +1,4 @@
-<% unless @temp.nil? && @perfil.nil? %>
+<% unless @temp && @perfil.nil? %>
     <div class="row justify-content-md-center">
         <div class="col-md-4">
             <div class="card h-100">
@@ -36,6 +36,7 @@
 <% else %>
     <div class="alert alert-danger" role="alert">
     Um erro ocorreu na consulta aos dados, favor tentar novamente!
+    <%= session[:pokemon].name %>
     </div>
 <% end %>
 <div class="row">

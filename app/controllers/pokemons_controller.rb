@@ -4,7 +4,7 @@ class PokemonsController < ApplicationController
     # pegando a temperatura
     @temp = get_temp
     # pegando o pokemon
-    get_pokemon
+    @pokemon = get_pokemon
     @perfil = PokeApi.get(pokemon: session[:pokemon].name)
   
   end
