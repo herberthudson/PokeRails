@@ -1,8 +1,0 @@
-<h1>Enter the City name</h1>
-
-<%= form_tag("/pokemons/view", method: "get") do %>
-
-    <%= label_tag(:q, "City:") %>
-    <%= text_field_tag(:city) %>
-    <%= submit_tag("Go!") %>
-<% end %>
