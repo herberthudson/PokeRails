@@ -1,24 +1,67 @@
-# README
+# PokeRails
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Desafio Pokémon para Desenvolvedores
 
-Things you may want to cover:
+Uma aplicação web básica que irá ao inserir um nome de cidade, ela retorna a temperatura e um Pokémon de acordo com um faixa de temperatura.
 
-* Ruby version
+## Tecnologias utilizadas
 
-* System dependencies
+* Docker: 18.09.6-ce
 
-* Configuration
+* Docker-compose: 1.24.0
 
-* Database creation
+* Ruby: 2.6.3
 
-* Database initialization
+* Rails: 5.2.3
 
-* How to run the test suite
+* Gem figaro para configuração.
 
-* Services (job queues, cache servers, search engines, etc.)
+* Gem faraday para requisições.
 
-* Deployment instructions
+* Gem poke-api-v2 para retorno das informações dos pokémons.
 
-* ...
+* Bootstrap com Jquery para front.
+
+## Orientações para execução
+
+### Passo 1 - Clone o repositório
+
+Com o git instalado, faça o clone do repositório:
+
+```
+git clone https://github.com/herberthudson/PokeRails.git
+```
+
+### Passo 2 - Configuração da APPID
+
+Deve-se obter uma Api key em https://openweathermap.org/api.
+
+Após isso, criar o arquivo application.yml em PokeRails/config/ com o seguinte conteudo:
+
+```
+APPID: SUA_API_KEY
+```
+
+Não se esquece de atualizar com sua API KEY
+
+### Passo 3 - Construção do ambiente 
+
+Com o docker e docker-compose instalados e executando na máquina, vamos construir o ambiente, acesso o diretório do repositório e execute no terminal:
+
+```
+docker-compose build 
+```
+
+### Passo 4 - Iniciando a aplicação
+
+Com o terminal aberto no diretório e realizado a construção do ambiente, vamos iniciar, para isso, execute no terminal:
+
+```
+docker-compose up
+```
+
+Após terminar o processo, no navegador, iremos acessar o seguinte endereço: http://localhost:3000
+
+Pronto! Divirta-se!
+
+
