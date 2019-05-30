@@ -1,29 +1,45 @@
-<div class="row justify-content-md-center">
-    <div class="col-md-4">
-        <div class="card h-100">
-            <div class="card-header">
-                Tempo
+<% unless @temp.nil? && @perfil.nil? %>
+    <div class="row justify-content-md-center">
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    Tempo
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item list-group-item-action"><strong>Tempo na Região:</strong> <%= @temp["weather"][0]["main"] %></li>
+                        <li class="list-group-item list-group-item-action"><strong>Temperatura:</strong> <%= @temp["main"]["temp"] %> ºC</li>
+                        <li class="list-group-item list-group-item-action"><strong>Humidade:</strong> <%= @temp["main"]["humidity"] %>%</li>
+                        <li class="list-group-item list-group-item-action"><strong>Vento:</strong> <%= @temp["wind"]["speed"] %> m/s</li>
+
+                    </ul>
+                </div>
             </div>
-            <div class="card-body">
-                <ul class="list-group">
-                    <li class="list-group-item"><%= @temp["weather"][0]["main"] %></li>
-                    <li class="list-group-item"><%= @temp["main"]["temp"] %> C</li>
-                </ul>
+        </div>
+        <div class="col-md-4 h-100">
+            <div class="card">
+                <div class="card-header">
+                    Pokemon
+                </div>
+                <div class="text-center">
+                    <%= image_tag @perfil.sprites.front_default, size: "96x96", alt: @perfil.name %>
+                </div>
+                <div class="card-body text-center">
+                    <h2 class="text-uppercase"><%= @perfil.name %></h2>
+                    <ul class="list-group">
+                        <li class="list-group-item list-group-item-action"><strong>Tipo:</strong> <%= session[:pokemon_type] %></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-4 h-100">
-        <div class="card">
-            <div class="card-header">
-                Pokemon
-            </div>
-            <div class="text-center">
-                <%= image_tag @perfil.sprites.front_default, size: "96x96", alt: @perfil.name %>
-            </div>
-            <div class="card-body text-center">
-                <string>
-                <%= @perfil.name %>
-            </div>
-        </div>
+<% else %>
+    <div class="alert alert-danger" role="alert">
+    Um erro ocorreu na consulta aos dados, favor tentar novamente!
+    </div>
+<% end %>
+<div class="row">
+    <div class="col">
+        <%= link_to "Voltar", :back, class: "btn btn-outline-secondary" %>
     </div>
 </div>

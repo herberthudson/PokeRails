@@ -27,6 +27,7 @@ class PokemonsController < ApplicationController
     # current temperature
     temp = get_temp
     if temp["weather"][0]["main"] == "Rain"
+      session[:pokemon_type] = "electric"
       return "electric"
     else
       temp = get_temp["main"]["temp"]
@@ -59,6 +60,7 @@ class PokemonsController < ApplicationController
         # pokemons normal
         pokemon_type = 'normal'
       end
+      session[:pokemon_type] = pokemon_type
     end
     
   end
