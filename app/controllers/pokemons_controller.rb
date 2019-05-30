@@ -1,13 +1,18 @@
 class PokemonsController < ApplicationController
+  
   def view
+
     @temp = get_temp
-    @pokemon = get_pokemon
+    
     @perfil = PokeApi.get(pokemon: session[:pokemon].name)
+  
   end
 
   private
 
-  def get_pokemon
+  def get_pokemon    
+    # Retorna o tipo do pokemon, caso ocorra erro, retorna false
+
     begin
       session[:pokemon] ||= {}
       list_of_pokemons = PokeApi.get(type: sort_pokemon)
@@ -18,12 +23,16 @@ class PokemonsController < ApplicationController
           break
         end
       end
-    rescue => exception
+    
+    rescue
       return false
     end
+
   end
 
   def sort_pokemon
+    # Retorna um pokemon sortido de acordo com a temperatura
+    
     # current temperature
     temp = get_temp
     if temp["weather"][0]["main"] == "Rain"
@@ -66,6 +75,8 @@ class PokemonsController < ApplicationController
   end
 
   def get_temp
+    # Retorna a temperatura atual, caso occora erro, retorna false
+
     begin
       # get city name
       city = params[:city]
@@ -79,8 +90,8 @@ class PokemonsController < ApplicationController
       end
       #parsing return
       temp = JSON.parse response.body
-      #temp = response
-    rescue => exception
+      
+    rescue 
       return false
     end
     
